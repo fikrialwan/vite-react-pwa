@@ -10,7 +10,23 @@ export default defineConfig({
       registerType: "autoUpdate",
       workbox: {
         globPatterns: ["**/*.{js,css,html,ico,png,svg}"],
+        runtimeCaching: [
+          {
+            handler: "NetworkFirst",
+            urlPattern: /\/api\/.*\//,
+            method: "GET",
+            options: {
+              backgroundSync: {
+                name: "myQueueName",
+                options: {
+                  maxRetentionTime: 24 * 60,
+                },
+              },
+            },
+          },
+        ],
       },
+      includeAssets: ["**/*"],
     }),
   ],
 });
