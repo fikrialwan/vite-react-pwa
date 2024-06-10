@@ -27,6 +27,9 @@ export default defineConfig({
         ],
       },
       includeAssets: ["**/*"],
+      strategies: "injectManifest",
+      srcDir: "src",
+      filename: "sw.js",
     }),
   ],
 });
